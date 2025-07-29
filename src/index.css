@@ -1,0 +1,64 @@
+/* Para que todo tome altura completa */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+body, #root {
+  margin: 0;
+  padding-left: 15px; /* deja mínimo 15px de margen izquierdo */
+  height: 100vh;
+}
+
+
+/* Contenedor principal para centrar el contenido */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 900px; /* Ancho máximo del contenido */
+  margin: 0 auto; /* Centra horizontalmente */
+  border: 1px solid #ccc; /* Borde alrededor del contenido */
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* Barra de navegación */
+nav {
+  background-color: #007bff;
+  padding: 1rem;
+  border-bottom: 1px solid #0056b3;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* Estilo para links del menú */
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Contenido centrado con padding */
+.content {
+  flex: 1;
+  margin-left: 2rem; /* o 3rem, lo que necesites */
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #f9f9f9;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  min-height: 300px;
+}
+
+
+
