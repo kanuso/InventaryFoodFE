@@ -6,7 +6,7 @@ async function getJSON(url) {
   return res.json();
 }
 
-export const getTamales = () => getJSON('/Productos/tamales');
+export const getTamales = () => getJSON('/Productos/producto');
 export const getBebidas = () => getJSON('/Productos/bebidas');
 export const getCombos = () => getJSON('/Combos');
 export const getPedidos = () => getJSON('/Pedidos');
@@ -16,7 +16,7 @@ export const getTamalTop = () => getJSON('/Dashboard/tamal-top');
 export const getBebidaTop = () => getJSON('/Dashboard/bebida-top');
 
 export const postTamal = (tamal) =>
-  fetch(`${API_URL}/Productos/tamales`, {
+  fetch(`${API_URL}/Productos/producto`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(tamal),
@@ -25,7 +25,6 @@ export const postTamal = (tamal) =>
 export const postBebida = (bebida) =>
   fetch(`${API_URL}/Productos/bebidas`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bebida),
   });
 

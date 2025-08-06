@@ -1,19 +1,40 @@
-// src/components/Table.jsx
-export function Table({ columns, data }) {
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@mui/material';
+
+export function BasicTable({ columns = [], data = [] }) {
   return (
-    <table border="1" cellPadding={5} cellSpacing={0}>
-      <thead>
-        <tr>{columns.map((col) => <th key={col.accessor}>{col.header}</th>)}</tr>
-      </thead>
-      <tbody>
-        {data.map((row, i) => (
-          <tr key={i}>
-            {columns.map((col) => (
-              <td key={col.accessor}>{row[col.accessor]}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="dynamic table">
+<TableHead>
+  <TableRow>
+    {columns.map((col) => (
+      <TableCell key={col.accessor} sx={{ fontWeight: 'bold' }}>
+        {col.header}
+      </TableCell>
+    ))}
+  </TableRow>
+</TableHead>
+        <TableBody>
+          {data.map((row, index) => (
+            <TableRow key={row.id || index}>
+              {columns.map((col) => (
+                <TableCell key={col.accessor}>
+                  {Array.isArray(row[col.accessor])
+                    ? row[col.accessor].join(', ')
+                    : String(row[col.accessor])}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }

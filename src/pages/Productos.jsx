@@ -1,15 +1,17 @@
 // src/pages/Productos.jsx
 import { useEffect, useState } from 'react';
 import { getTamales, getBebidas, postTamal, postBebida } from '../services/api';
-import { Table } from '../components/Table';
+// import { Table } from '../components/Table';
+import { BasicTable } from '../components/Table';
+
 
 export function Productos() {
-  const [tamales, setTamales] = useState([]);
+  const [productos, setTamales] = useState([]);
   const [bebidas, setBebidas] = useState([]);
 
   // Para formulario simple
   const [nuevoTamal, setNuevoTamal] = useState({
-    tipoMasa: '', relleno: '', envoltura: '', nivelPicante: '', precioUnitario: 0
+    nombre: '', descripcion: '',  precio: 0
   });
   const [nuevaBebida, setNuevaBebida] = useState({
     tipo: '', endulzante: '', toppings: '', tamaño: '', precio: 0
@@ -24,7 +26,7 @@ export function Productos() {
     await postTamal(nuevoTamal);
     const data = await getTamales();
     setTamales(data);
-    setNuevoTamal({ tipoMasa: '', relleno: '', envoltura: '', nivelPicante: '', precioUnitario: 0 });
+    setNuevoTamal({ nombre: '', descripcion: '',  precio: 0});
   }
 
   async function agregarBebida() {
@@ -37,26 +39,22 @@ export function Productos() {
   return (
     <div>
       <h2>Productos - Tamales</h2>
-      <Table
+      <BasicTable
         columns={[
-          { header: 'Tipo Masa', accessor: 'tipoMasa' },
-          { header: 'Relleno', accessor: 'relleno' },
-          { header: 'Envoltura', accessor: 'envoltura' },
-          { header: 'Nivel Picante', accessor: 'nivelPicante' },
-          { header: 'Precio Unitario', accessor: 'precioUnitario' },
+          { header: 'Nombre', accessor: 'nombre' },
+          { header: 'Descripcion', accessor: 'descripcion' },
+          { header: 'Precio', accessor: 'precio' },
         ]}
-        data={tamales}
+        data={productos}
       />
-      <h3>Agregar Tamal</h3>
-      <input placeholder="Tipo Masa" value={nuevoTamal.tipoMasa} onChange={e => setNuevoTamal({...nuevoTamal, tipoMasa: e.target.value})} />
-      <input placeholder="Relleno" value={nuevoTamal.relleno} onChange={e => setNuevoTamal({...nuevoTamal, relleno: e.target.value})} />
-      <input placeholder="Envoltura" value={nuevoTamal.envoltura} onChange={e => setNuevoTamal({...nuevoTamal, envoltura: e.target.value})} />
-      <input placeholder="Nivel Picante" value={nuevoTamal.nivelPicante} onChange={e => setNuevoTamal({...nuevoTamal, nivelPicante: e.target.value})} />
-      <input type="number" placeholder="Precio Unitario" value={nuevoTamal.precioUnitario} onChange={e => setNuevoTamal({...nuevoTamal, precioUnitario: parseFloat(e.target.value)})} />
+      <h3>Agregar Producto</h3>
+      <input placeholder="Nombre" value={nuevoTamal.nombre} onChange={e => setNuevoTamal({...nuevoTamal, nombre: e.target.value})} />
+      <input placeholder="Descripcion" value={nuevoTamal.descripcion} onChange={e => setNuevoTamal({...nuevoTamal, descripcion: e.target.value})} />
+      <input type="number" placeholder="Precio" value={nuevoTamal.precio} onChange={e => setNuevoTamal({...nuevoTamal, precio: parseFloat(e.target.value)})} />
       <button onClick={agregarTamal}>Agregar Tamal</button>
 
       <h2>Productos - Bebidas</h2>
-      <Table
+      <BasicTable
         columns={[
           { header: 'Tipo', accessor: 'tipo' },
           { header: 'Endulzante', accessor: 'endulzante' },

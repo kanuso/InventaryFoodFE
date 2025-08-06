@@ -1,7 +1,7 @@
 // src/pages/Combos.jsx
 import { useEffect, useState } from 'react';
 import { getCombos, postCombo } from '../services/api';
-import { Table } from '../components/Table';
+import { BasicTable } from '../components/Table';
 
 export function Combos() {
   const [combos, setCombos] = useState([]);
@@ -26,7 +26,7 @@ export function Combos() {
   return (
     <div>
       <h2>Combos</h2>
-      <Table
+      <BasicTable
         columns={[
           { header: 'Nombre', accessor: 'nombre' },
           { header: 'Descripcion', accessor: 'descripcion' },

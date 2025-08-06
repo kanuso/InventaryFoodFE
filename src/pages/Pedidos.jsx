@@ -6,7 +6,7 @@ import {
   getBebidas,
   getCombos,
 } from '../services/api';
-import { Table } from '../components/Table';
+import { BasicTable } from '../components/Table';
 
 export function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
@@ -57,7 +57,7 @@ export function Pedidos() {
   return (
     <div>
       <h2>Pedidos</h2>
-      <Table
+      <BasicTable
         columns={[
           { header: 'Fecha', accessor: 'fecha' },
           { header: 'Productos', accessor: 'productos' },
